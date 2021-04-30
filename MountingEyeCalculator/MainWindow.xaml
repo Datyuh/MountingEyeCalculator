@@ -1,20 +1,23 @@
-﻿<Window
+﻿<Window x:Name="WindodMain"
     x:Class="MountingEyeCalculator.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-    xmlns:local="clr-namespace:MountingEyeCalculator"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
+    Title="Калькулятор монтажных проушин"
     Width="800"
     Height="450"
     AllowsTransparency="True"
     Background="{x:Null}"
-    WindowStartupLocation="CenterScreen"
+    FontFamily="Calibri"
+    FontSize="14"
+    Icon="Resources/Calculation_Eyelets.ico"
+    ResizeMode="CanResizeWithGrip"
     WindowState="Normal"
     WindowStyle="None"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen">
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
@@ -91,7 +94,6 @@
                     Opacity="0"
                     Source="/Resources/LogoVNM2011_deep2.png" />
 
-
                 <Grid
                     Grid.Row="0"
                     Grid.Column="0"
@@ -100,9 +102,11 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="30" />
                         <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
                     </Grid.ColumnDefinitions>
                     <Border
-                        Grid.ColumnSpan="3"
+                        Name="BorderWindow"
+                        Grid.ColumnSpan="4"
                         Background="#FF2C3038"
                         BorderThickness="0"
                         CornerRadius="10,10,0,0"
@@ -112,25 +116,26 @@
                                 Grid.Column="0"
                                 Margin="20,5,0,0"
                                 Orientation="Horizontal">
-                                <Image Margin="0,0,0,3" Source="Stud_Calculator.ico" />
+                                <Image Margin="0,0,0,3" Source="Resources/Calculation_Eyelets.ico" />
                                 <TextBlock
-                                    Width="250"
+                                    Width="270"
                                     Margin="10,5,0,5"
                                     VerticalAlignment="Bottom"
                                     FontSize="16"
-                                    Foreground="#FFFF7B00"
-                                    Text="{Binding Title}" />
+                                    Foreground="#FFFEFBC1"
+                                    Text="Калькулятор монтажных проушин" />
                             </StackPanel>
                         </Grid>
                     </Border>
 
                     <Button
                         Grid.Row="0"
-                        Grid.Column="2"
+                        Grid.Column="3"
                         Margin="0,0,0,20"
                         Click="Button_Click_1"
                         FontFamily="Calibri"
-                        FontSize="16">
+                        FontSize="16"
+                        ToolTip="Закрыть">
                         <iconPacks:PackIconMaterial
                             Width="10"
                             Height="10"
@@ -165,12 +170,51 @@
 
                     <Button
                         Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="0,0,0,20"
+                        Click="Button_Click_2"
+                        FontFamily="Calibri"
+                        FontSize="16">
+                        <iconPacks:PackIconMaterial
+                            Name="WindowMaximize"
+                            Width="10"
+                            Height="10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Kind="WindowMaximize" />
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="Gray" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="White" />
+                                        <Setter Property="Background" Value="Gray" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border
+                                    Background="{TemplateBinding Property=Background}"
+                                    BorderBrush="#FF515D6D"
+                                    BorderThickness="1,0,0,1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button
+                        Grid.Row="0"
                         Grid.Column="1"
                         Margin="0,0,0,20"
                         Click="Button_Click"
                         FontFamily="Calibri"
                         FontSize="16"
-                        FontWeight="Bold">
+                        FontWeight="Bold"
+                        ToolTip="Свернуть">
                         <iconPacks:PackIconMaterial
                             Width="10"
                             Height="10"
@@ -202,6 +246,151 @@
                         </Button.Template>
                     </Button>
                 </Grid>
+
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    ClipToBounds="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Image
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,5,0,0"
+                        Source="Resources/image/data3.png"
+                        Stretch="Uniform">
+                        <Image.RenderTransform>
+                            <ScaleTransform />
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="0,5,0,0"
+                        Source="Resources/image/data1.png"
+                        Stretch="Uniform">
+                        <Image.RenderTransform>
+                            <ScaleTransform />
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0,5,0,0"
+                        Source="Resources/image/data.png"
+                        Stretch="Uniform">
+                        <Image.RenderTransform>
+                            <ScaleTransform />
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,5,0,0"
+                        Source="Resources/image/data2.png"
+                        Stretch="Uniform">
+                        <Image.RenderTransform>
+                            <ScaleTransform />
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="0,5,0,0"
+                        Source="Resources/image/data2_2.png"
+                        Stretch="Uniform">
+                        <Image.RenderTransform>
+                            <ScaleTransform />
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="0,5,0,5"
+                        Source="Resources/image/data5.png"
+                        Stretch="Uniform">
+                        <Image.RenderTransform>
+                            <ScaleTransform />
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,5,0,0"
+                        Source="Resources/image/data4.png"
+                        Stretch="Uniform">
+                        <Image.RenderTransform>
+                            <ScaleTransform />
+                        </Image.RenderTransform>
+                    </Image>
+
+                </Grid>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Orientation="Vertical">
+                    <TextBlock
+                        Height="198"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Top"
+                        Foreground="White"
+                        TextWrapping="Wrap"><Span><Run Text="D  - Динамический коэффициент в горизонте" /></Span><LineBreak /><Span><Run Text="D1 - Динамический коэффициент в промежуточном положении" /></Span><LineBreak /><Span><Run Text="y - Расстояние от центра отверстия проушины до опоры" /></Span><LineBreak /><Span><Run Text="W - Момент сопротивления сечения монтажной проушины" /></Span><LineBreak /><Span><Run Text="F1 - Пощадь сечения монтажной проушины" /></Span><LineBreak /><Span FontFamily="Segoe UI"><Run Text="σt - " /></Span><Span><Run Text="Предел текучести материала монтажной проушины" /></Span><LineBreak /><Span FontFamily="Segoe UI"><Run Text="δ - " /></Span><Span><Run Text="толшина проушины" /></Span><LineBreak /><Span><Run Text="DO - диаметр отверстия проушины" /></Span><LineBreak /><Span><Run Text="h - высота проушины" /></Span><LineBreak /><Span FontFamily="Segoe UI"><Run Text="Для расчета монтажной проушины можно показать, что сила c1 максимальна при угле a = 40,7" /></Span><Span><Run Text="°" /></Span><LineBreak /><LineBreak /></TextBlock>
+
+                    <Border
+                        Height="3"
+                        Background="White"
+                        BorderThickness="1"
+                        CornerRadius="5" />
+
+                    <StackPanel Margin="5,5,0,0" Orientation="Horizontal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <RadioButton
+                                x:Name="WithBushing"
+                                Grid.Column="0"
+                                Content="С втулкой"
+                                Foreground="White" />
+                            <RadioButton
+                                x:Name="WithoutBushing"
+                                Grid.Column="1"
+                                Content="Без втулки"
+                                Foreground="White" />
+                        </Grid>
+                    </StackPanel>
+                    <Button
+                        Width="75"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Content="Button" />
+                    <Button
+                        Width="75"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Content="Button" />
+                    <Button
+                        Width="75"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Content="Button" />
+                    <Button
+                        Width="75"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Content="Button" />
+                </StackPanel>
 
             </Grid>
         </Border>

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using MahApps.Metro.IconPacks;
 
 namespace MountingEyeCalculator
 {
@@ -11,6 +12,8 @@ namespace MountingEyeCalculator
         public MainWindow()
         {
             InitializeComponent();
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -25,7 +28,35 @@ namespace MountingEyeCalculator
 
         private void Border_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (WindowState == WindowState.Normal)
+                DragMove();
+            
+            else
+            {
+                Point point = PointToScreen(Mouse.GetPosition(this));
+                WindodMain.Left = point.X;
+                WindodMain.Top = point.Y - WindodMain.Height;
+                WindowState = WindowState.Normal;
+                WindowMaximize.Kind = PackIconMaterialKind.WindowMaximize;
+                DragMove();
+
+            }
+            
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                WindowState = WindowState.Maximized;
+                WindowMaximize.Kind = PackIconMaterialKind.WindowRestore;
+            }
+
+            else
+            {
+                WindowState = WindowState.Normal;
+                WindowMaximize.Kind = PackIconMaterialKind.WindowMaximize;
+            }
         }
     }
 }
