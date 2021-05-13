@@ -35,16 +35,7 @@
                     Background="Transparent"
                     FontFamily="Calibri"
                     Foreground="White"
-                    TextWrapping="Wrap"><Span><Run Text="Название: Калькулятор шпилек" />
-                    </Span><LineBreak /><Run Text="Версия v2.0.1" />
-                    <LineBreak /><LineBreak /><Span><Run Text="Автор:" />
-                    </Span><LineBreak /><Span><Run Text="     Учаев Алексей Владимирович" />
-                    </Span><LineBreak /><LineBreak /><Span><Run Text="Телефон: " /></Span>
-                    <LineBreak /><Run Text="      73-19 " /><LineBreak /><LineBreak />
-                    <Span><Run Text="ВАЖНО!!!" /></Span><LineBreak /><Span><Run Text="Программа находится в тестовом режиме." />
-                    </Span><LineBreak /><Span><Run Text="Если возникнут вопросы или предложения " />
-                    </Span><LineBreak /><Span><Run Text="обращаться по телефону указанному выше." />
-                    </Span></TextBlock>
+                    TextWrapping="Wrap"><Span><Run Text="Название: Калькулятор монтажных проушин"/></Span><LineBreak/><Run Text="Версия v2.0.0"/><LineBreak/><LineBreak/><Span><Run Text="Автор:"/></Span><LineBreak/><Span><Run Text="     Учаев Алексей Владимирович"/></Span><LineBreak/><LineBreak/><Span><Run Text="Телефон: "/></Span><LineBreak/><Run Text="      73-19 "/><LineBreak/><LineBreak/><Span><Run Text="ВАЖНО!!!"/></Span><LineBreak/><Span><Run Text="Программа находится в тестовом режиме."/></Span><LineBreak/><Span><Run Text="Если возникнут вопросы или предложения "/></Span><LineBreak/><Span><Run Text="обращаться по телефону указанному выше."/></Span></TextBlock>
                 <Image Margin="10,20,290,40" Source="Resources/image/Agent_007.png" />
                 <Button
                     Margin="446,260,10,10"

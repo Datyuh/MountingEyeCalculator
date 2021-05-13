@@ -1,23 +1,26 @@
-﻿<Window x:Name="WindodMain"
+﻿<Window
     x:Class="MountingEyeCalculator.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fonds="clr-namespace:MountingEyeCalculator.Fonds"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="WindodMain"
     Title="Калькулятор монтажных проушин"
-    Width="800"
-    Height="450"
+    Width="850"
+    Height="600"
     AllowsTransparency="True"
     Background="{x:Null}"
     FontFamily="Calibri"
     FontSize="14"
     Icon="Resources/Calculation_Eyelets.ico"
     ResizeMode="CanResizeWithGrip"
+    SourceInitialized="Window_SourceInitialized"
+    WindowStartupLocation="CenterScreen"
     WindowState="Normal"
     WindowStyle="None"
-    mc:Ignorable="d"
-    WindowStartupLocation="CenterScreen">
+    mc:Ignorable="d">
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
@@ -110,7 +113,9 @@
                         Background="#FF2C3038"
                         BorderThickness="0"
                         CornerRadius="10,10,0,0"
-                        PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown">
+                        PreviewMouseLeftButtonDown="rctHeader_PreviewMouseLeftButtonDown"
+                        PreviewMouseLeftButtonUp="rctHeader_PreviewMouseLeftButtonUp"
+                        PreviewMouseMove="rctHeader_PreviewMouseMove">
                         <Grid>
                             <StackPanel
                                 Grid.Column="0"
@@ -285,7 +290,7 @@
                     <Image
                         Grid.Row="0"
                         Grid.Column="1"
-                        Margin="0,5,0,0"
+                        Margin="5,5,5,5"
                         Source="Resources/image/data.png"
                         Stretch="Uniform">
                         <Image.RenderTransform>
@@ -323,6 +328,7 @@
                         </Image.RenderTransform>
                     </Image>
                     <Image
+                        Name="FirstImage"
                         Grid.Row="0"
                         Grid.Column="0"
                         Margin="0,5,0,0"
@@ -335,62 +341,667 @@
 
                 </Grid>
 
-                <StackPanel
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Orientation="Vertical">
-                    <TextBlock
-                        Height="198"
-                        Margin="5,5,0,0"
-                        VerticalAlignment="Top"
-                        Foreground="White"
-                        TextWrapping="Wrap"><Span><Run Text="D  - Динамический коэффициент в горизонте" /></Span><LineBreak /><Span><Run Text="D1 - Динамический коэффициент в промежуточном положении" /></Span><LineBreak /><Span><Run Text="y - Расстояние от центра отверстия проушины до опоры" /></Span><LineBreak /><Span><Run Text="W - Момент сопротивления сечения монтажной проушины" /></Span><LineBreak /><Span><Run Text="F1 - Пощадь сечения монтажной проушины" /></Span><LineBreak /><Span FontFamily="Segoe UI"><Run Text="σt - " /></Span><Span><Run Text="Предел текучести материала монтажной проушины" /></Span><LineBreak /><Span FontFamily="Segoe UI"><Run Text="δ - " /></Span><Span><Run Text="толшина проушины" /></Span><LineBreak /><Span><Run Text="DO - диаметр отверстия проушины" /></Span><LineBreak /><Span><Run Text="h - высота проушины" /></Span><LineBreak /><Span FontFamily="Segoe UI"><Run Text="Для расчета монтажной проушины можно показать, что сила c1 максимальна при угле a = 40,7" /></Span><Span><Run Text="°" /></Span><LineBreak /><LineBreak /></TextBlock>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <StackPanel Grid.RowSpan="3" Orientation="Vertical">
+                        <TextBlock
+                            Height="185"
+                            Margin="5,5,0,0"
+                            VerticalAlignment="Top"
+                            Foreground="White"
+                            TextWrapping="Wrap"><Span><Run Text="D  - Динамический коэффициент в горизонте" /></Span><LineBreak /><Span><Run Text="D1 - Динамический коэффициент в промежуточном положении" /></Span><LineBreak /><Span><Run Text="y - Расстояние от центра отверстия проушины до опоры" /></Span><LineBreak /><Span><Run Text="W - Момент сопротивления сечения монтажной проушины" /></Span><LineBreak /><Span><Run Text="F1 - Пощадь сечения монтажной проушины" /></Span><LineBreak /><Span FontFamily="Segoe UI"><Run Text="σt - " /></Span><Span><Run Text="Предел текучести материала монтажной проушины" /></Span><LineBreak /><Span FontFamily="Segoe UI"><Run Text="δ - " /></Span><Span><Run Text="толшина проушины" /></Span><LineBreak /><Span><Run Text="h - высота проушины" /></Span><LineBreak /><Span FontFamily="Segoe UI"><Run Text="Для расчета монтажной проушины можно показать, что сила c1 максимальна при угле a = 40,7" /></Span><Span><Run Text="°" /></Span><LineBreak /><LineBreak /></TextBlock>
 
-                    <Border
-                        Height="3"
-                        Background="White"
-                        BorderThickness="1"
-                        CornerRadius="5" />
+                        <Border
+                            Height="3"
+                            Background="White"
+                            BorderThickness="1"
+                            CornerRadius="5" />
 
-                    <StackPanel Margin="5,5,0,0" Orientation="Horizontal">
-                        <Grid>
+                        <StackPanel Margin="5,5,0,0" Orientation="Horizontal">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <RadioButton
+                                    x:Name="WithBushing"
+                                    Grid.Column="0"
+                                    Content="С втулкой"
+                                    Foreground="White" />
+                                <RadioButton
+                                    x:Name="WithoutBushing"
+                                    Grid.Column="1"
+                                    Content="Без втулки"
+                                    Foreground="White" />
+                            </Grid>
+                        </StackPanel>
+
+
+                        <Grid
+                            Height="200"
+                            Margin="0,15,5,0"
+                            VerticalAlignment="Top">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <RadioButton
-                                x:Name="WithBushing"
+
+
+                            <Grid
+                                x:Name="TablUnits"
+                                Grid.Row="0"
                                 Grid.Column="0"
-                                Content="С втулкой"
-                                Foreground="White" />
-                            <RadioButton
-                                x:Name="WithoutBushing"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="WeightDevices"
+                                    TextBlockUnit="кг."
+                                    TextWeightDevice="{Binding WeightDevices, Mode=TwoWay}"
+                                    Watermarks="Macca апп."
+                                    WatermarksTextColors="Gray" />
+                            </Grid>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="0"
                                 Grid.Column="1"
-                                Content="Без втулки"
-                                Foreground="White" />
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="LBigBox"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding LBigBox, Mode=TwoWay}"
+                                    Watermarks="L"
+                                    WatermarksTextColors="Gray" />
+                            </Grid>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="ABigBox"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding ABigBox, Mode=TwoWay}"
+                                    Watermarks="A"
+                                    WatermarksTextColors="Black" />
+                            </Grid>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="BBigBox"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding BBigBox, Mode=TwoWay}"
+                                    Watermarks="B"
+                                    WatermarksTextColors="Black" />
+                            </Grid>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="DBox"
+                                    TextBlockUnit=""
+                                    TextWeightDevice="{Binding DBox, Mode=TwoWay}"
+                                    Watermarks="D"
+                                    WatermarksTextColors="Gray" />
+                            </Grid>
+                            <Border
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="D1Box"
+                                    TextBlockUnit=""
+                                    TextWeightDevice="{Binding D1Box, Mode=TwoWay}"
+                                    Watermarks="D1"
+                                    WatermarksTextColors="Gray" />
+                            </Grid>
+                            <Border
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="AlfaBox"
+                                    TextBlockUnit="°"
+                                    TextWeightDevice="{Binding AlfaBox, Mode=TwoWay}"
+                                    Watermarks="α"
+                                    WatermarksTextColors="Black" />
+                            </Grid>
+                            <Border
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="YBox"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding YBox, Mode=TwoWay}"
+                                    Watermarks="y"
+                                    WatermarksTextColors="Black" />
+                            </Grid>
+                            <Border
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="SigmaTBox"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding SigmaTBox, Mode=TwoWay}"
+                                    Watermarks="σt"
+                                    WatermarksTextColors="Gray" />
+
+                            </Grid>
+                            <Border
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="H1Box"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding H1Box, Mode=TwoWay}"
+                                    Watermarks="h1"
+                                    WatermarksTextColors="Gray" />
+                            </Grid>
+                            <Border
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="H2Box"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding H2Box, Mode=TwoWay}"
+                                    Watermarks="h2"
+                                    WatermarksTextColors="Black" />
+                            </Grid>
+                            <Border
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="2"
+                                Grid.Column="3"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="BBox"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding BBox, Mode=TwoWay}"
+                                    Watermarks="b"
+                                    WatermarksTextColors="Black" />
+                            </Grid>
+                            <Border
+                                Grid.Row="2"
+                                Grid.Column="3"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="TBox"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding TBox, Mode=TwoWay}"
+                                    Watermarks="t"
+                                    WatermarksTextColors="Gray" />
+                            </Grid>
+                            <Border
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="T1Box"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding T1Box, Mode=TwoWay}"
+                                    Watermarks="t1"
+                                    WatermarksTextColors="Gray" />
+                            </Grid>
+                            <Border
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="T2Box"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding T2Box, Mode=TwoWay}"
+                                    Watermarks="t2"
+                                    WatermarksTextColors="Black" />
+                            </Grid>
+                            <Border
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="3"
+                                Grid.Column="3"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="T3Box"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding T3Box, Mode=TwoWay}"
+                                    Watermarks="t3"
+                                    WatermarksTextColors="Black" />
+                            </Grid>
+                            <Border
+                                Grid.Row="3"
+                                Grid.Column="3"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="L1Box"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding L1Box, Mode=TwoWay}"
+                                    Watermarks="l1"
+                                    WatermarksTextColors="Gray" />
+                            </Grid>
+                            <Border
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="L2Box"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding L2Box, Mode=TwoWay}"
+                                    Watermarks="l2"
+                                    WatermarksTextColors="Gray" />
+                            </Grid>
+                            <Border
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="T7Box"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding T7Box, Mode=TwoWay}"
+                                    Watermarks="t7"
+                                    WatermarksTextColors="Black" />
+                            </Grid>
+                            <Border
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="4"
+                                Grid.Column="3"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="H7Box"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding H7Box, Mode=TwoWay}"
+                                    Watermarks="h7"
+                                    WatermarksTextColors="Black" />
+                            </Grid>
+                            <Border
+                                Grid.Row="4"
+                                Grid.Column="3"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                            <Grid
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                Margin="0,0,0,0">
+                                <fonds:TextBoxForData
+                                    x:Name="K1Box"
+                                    TextBlockUnit="мм."
+                                    TextWeightDevice="{Binding K1Box, Mode=TwoWay}"
+                                    Watermarks="k1"
+                                    WatermarksTextColors="Gray" />
+                            </Grid>
+                            <Border
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                Height="3"
+                                Margin="5,23,0,0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="5" />
+
+                        </Grid>
+
+                        <Grid Margin="5,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="103*" />
+                                <ColumnDefinition Width="105*" />
+                                <ColumnDefinition Width="111*" />
+                                <ColumnDefinition Width="97*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Button
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Height="35"
+                                Margin="0,15,0,0"
+                                VerticalAlignment="Center"
+                                Command="{Binding AboutProgram}"
+                                Content="О программе">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Foreground" Value="White" />
+                                        <Setter Property="Background" Value="#FF282C34" />
+                                        <Setter Property="FontSize" Value="12" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="#FFCDAA32" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border
+                                            Background="{TemplateBinding Background}"
+                                            BorderThickness="2"
+                                            CornerRadius="15">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#FFCDAA32" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Button
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Height="35"
+                                Margin="3,15,0,0"
+                                VerticalAlignment="Center"
+                                Command="{Binding OutputInWord}"
+                                Content="Вывод в Word">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Foreground" Value="White" />
+                                        <Setter Property="Background" Value="#FF282C34" />
+                                        <Setter Property="FontSize" Value="12" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="LightSkyBlue" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border
+                                            Background="{TemplateBinding Background}"
+                                            BorderThickness="2"
+                                            CornerRadius="15">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="BorderBrush" Value="LightSkyBlue" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Button
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Height="35"
+                                Margin="3,15,0,0"
+                                VerticalAlignment="Center"
+                                Command="{Binding ClearForm}"
+                                Content="Очистить форму">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Foreground" Value="White" />
+                                        <Setter Property="Background" Value="#FF282C34" />
+                                        <Setter Property="FontSize" Value="12" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="SpringGreen" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border
+                                            Background="{TemplateBinding Background}"
+                                            BorderThickness="2"
+                                            CornerRadius="15">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="BorderBrush" Value="SpringGreen" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Button
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
+                                Height="45"
+                                Margin="0,0,0,0"
+                                VerticalAlignment="Center"
+                                Command="{Binding Result}"
+                                Content="Расчет">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Foreground" Value="White" />
+                                        <Setter Property="Background" Value="#FF282C34" />
+                                        <Setter Property="FontSize" Value="12" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="GreenYellow" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border
+                                            Background="{TemplateBinding Background}"
+                                            BorderThickness="2"
+                                            CornerRadius="15">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="BorderBrush" Value="GreenYellow" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                         </Grid>
                     </StackPanel>
-                    <Button
-                        Width="75"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Content="Button" />
-                    <Button
-                        Width="75"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Content="Button" />
-                    <Button
-                        Width="75"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Content="Button" />
-                    <Button
-                        Width="75"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Content="Button" />
-                </StackPanel>
+                </Grid>
 
             </Grid>
         </Border>
