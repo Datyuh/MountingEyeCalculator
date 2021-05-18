@@ -1,11 +1,11 @@
 ﻿using System.Windows;
 
-namespace StudCalculator.Views.Windows
+namespace MountingEyeCalculator.Window
 {
     /// <summary>
     /// Логика взаимодействия для AboutProgram.xaml
     /// </summary>
-    public partial class AboutProgram : Window
+    public partial class AboutProgram : System.Windows.Window
     {
         public AboutProgram()
         {

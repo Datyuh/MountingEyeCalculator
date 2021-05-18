@@ -1,7 +1,0 @@
-﻿namespace MountingEyeCalculator
-{
-    class GridUnitsModel
-    {
-
-    }
-}

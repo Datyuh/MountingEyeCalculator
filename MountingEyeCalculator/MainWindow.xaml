@@ -338,6 +338,21 @@
                             <ScaleTransform />
                         </Image.RenderTransform>
                     </Image>
+                    <Grid
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Margin="5"
+                        Background="{Binding EnterResultColorBack}">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="{Binding EnterResultColorBack}"
+                            FontSize="38"
+                            FontWeight="Bold"
+                            Foreground="Black"
+                            Text="{Binding EnterResult, Mode=OneWay}"
+                            TextWrapping="Wrap" />
+                    </Grid>
 
                 </Grid>
 
@@ -365,11 +380,15 @@
                                 <RadioButton
                                     x:Name="WithBushing"
                                     Grid.Column="0"
+                                    Command="{Binding WithBushingCommand}"
+                                    IsChecked="{Binding WithBushingChecked}"
                                     Content="С втулкой"
                                     Foreground="White" />
                                 <RadioButton
                                     x:Name="WithoutBushing"
                                     Grid.Column="1"
+                                    Command="{Binding WithoutBushingCommand}"
+                                    IsChecked="{Binding WithoutBushingChecked}"
                                     Content="Без втулки"
                                     Foreground="White" />
                             </Grid>
@@ -405,8 +424,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="WeightDevices"
+                                    TabIndex="1"
                                     TextBlockUnit="кг."
-                                    TextWeightDevice="{Binding WeightDevices, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding WeightDevices, Mode=OneWayToSource}"
                                     Watermarks="Macca апп."
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -425,8 +445,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="LBigBox"
+                                    TabIndex="2"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding LBigBox, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding LBigBox, Mode=OneWayToSource}"
                                     Watermarks="L"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -445,8 +466,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="ABigBox"
+                                    TabIndex="3"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding ABigBox, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding ABigBox, Mode=OneWayToSource}"
                                     Watermarks="A"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -465,8 +487,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="BBigBox"
+                                    TabIndex="4"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding BBigBox, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding BBigBox, Mode=OneWayToSource}"
                                     Watermarks="B"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -485,8 +508,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="DBox"
+                                    TabIndex="4"
                                     TextBlockUnit=""
-                                    TextWeightDevice="{Binding DBox, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding DBox, Mode=OneWayToSource}"
                                     Watermarks="D"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -505,8 +529,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="D1Box"
+                                    TabIndex="5"
                                     TextBlockUnit=""
-                                    TextWeightDevice="{Binding D1Box, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding D1Box, Mode=OneWayToSource}"
                                     Watermarks="D1"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -525,8 +550,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="AlfaBox"
+                                    TabIndex="6"
                                     TextBlockUnit="°"
-                                    TextWeightDevice="{Binding AlfaBox, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding AlfaBox, Mode=OneWayToSource}"
                                     Watermarks="α"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -545,8 +571,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="YBox"
+                                    TabIndex="7"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding YBox, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding YBox, Mode=OneWayToSource}"
                                     Watermarks="y"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -565,8 +592,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="SigmaTBox"
+                                    TabIndex="8"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding SigmaTBox, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding SigmaTBox, Mode=OneWayToSource}"
                                     Watermarks="σt"
                                     WatermarksTextColors="Gray" />
 
@@ -586,8 +614,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="H1Box"
+                                    TabIndex="9"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding H1Box, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding H1Box, Mode=OneWayToSource}"
                                     Watermarks="h1"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -606,8 +635,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="H2Box"
+                                    TabIndex="10"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding H2Box, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding H2Box, Mode=OneWayToSource}"
                                     Watermarks="h2"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -626,8 +656,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="BBox"
+                                    TabIndex="11"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding BBox, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding BBox, Mode=OneWayToSource}"
                                     Watermarks="b"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -646,8 +677,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="TBox"
+                                    TabIndex="12"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding TBox, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding TBox, Mode=OneWayToSource}"
                                     Watermarks="t"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -666,8 +698,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="T1Box"
+                                    TabIndex="13"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding T1Box, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding T1Box, Mode=OneWayToSource}"
                                     Watermarks="t1"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -686,8 +719,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="T2Box"
+                                    TabIndex="14"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding T2Box, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding T2Box, Mode=OneWayToSource}"
                                     Watermarks="t2"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -706,8 +740,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="T3Box"
+                                    TabIndex="15"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding T3Box, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding T3Box, Mode=OneWayToSource}"
                                     Watermarks="t3"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -726,8 +761,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="L1Box"
+                                    TabIndex="16"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding L1Box, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding L1Box, Mode=OneWayToSource}"
                                     Watermarks="l1"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -746,8 +782,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="L2Box"
+                                    TabIndex="17"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding L2Box, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding L2Box, Mode=OneWayToSource}"
                                     Watermarks="l2"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -766,8 +803,10 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="T7Box"
+                                    TabIndex="18"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding T7Box, Mode=TwoWay}"
+                                    IsEnabled="{Binding T7BoxEnable}"
+                                    TextWeightDevice="{Binding T7Box, Mode=OneWayToSource}"
                                     Watermarks="t7"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -783,11 +822,13 @@
                             <Grid
                                 Grid.Row="4"
                                 Grid.Column="3"
-                                Margin="0,0,0,0">
+                                Margin="0,0,0,0"> 
                                 <fonds:TextBoxForData
                                     x:Name="H7Box"
+                                    TabIndex="19"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding H7Box, Mode=TwoWay}"
+                                    IsEnabled="{Binding H7BoxEnable}"
+                                    TextWeightDevice="{Binding H7Box, Mode=OneWayToSource}"
                                     Watermarks="h7"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -806,8 +847,9 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="K1Box"
+                                    TabIndex="20"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding K1Box, Mode=TwoWay}"
+                                    TextWeightDevice="{Binding K1Box, Mode=OneWayToSource}"
                                     Watermarks="k1"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -838,9 +880,9 @@
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Height="35"
-                                Margin="0,15,0,0"
+                                Margin="0,25,0,0"
                                 VerticalAlignment="Center"
-                                Command="{Binding AboutProgram}"
+                                Command="{Binding ShowWindowAboutProgram}"
                                 Content="О программе">
                                 <Button.Style>
                                     <Style TargetType="Button">
@@ -879,10 +921,11 @@
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Height="35"
-                                Margin="3,15,0,0"
+                                Margin="3,25,0,0"
                                 VerticalAlignment="Center"
-                                Command="{Binding OutputInWord}"
-                                Content="Вывод в Word">
+                                Command="{Binding OutputInWordCommand}"
+                                Content="Вывод в Word"
+                                TabIndex="22">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Foreground" Value="White" />
@@ -920,7 +963,7 @@
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 Height="35"
-                                Margin="3,15,0,0"
+                                Margin="3,25,0,0"
                                 VerticalAlignment="Center"
                                 Command="{Binding ClearForm}"
                                 Content="Очистить форму">
@@ -964,8 +1007,9 @@
                                 Height="45"
                                 Margin="0,0,0,0"
                                 VerticalAlignment="Center"
-                                Command="{Binding Result}"
-                                Content="Расчет">
+                                Command="{Binding ResultCommand}"
+                                Content="Расчет"
+                                TabIndex="21">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Foreground" Value="White" />
@@ -1002,7 +1046,6 @@
                         </Grid>
                     </StackPanel>
                 </Grid>
-
             </Grid>
         </Border>
     </Grid>

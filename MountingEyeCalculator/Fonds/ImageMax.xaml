@@ -2,7 +2,7 @@
 
 
     <Style x:Key="ImageMaximize" TargetType="{x:Type Image}">
-        <Setter Property="RenderTransform" x:Name="Scale">
+        <Setter x:Name="Scale" Property="RenderTransform">
             <Setter.Value>
                 <ScaleTransform ScaleX="1" ScaleY="1" />
             </Setter.Value>
@@ -11,13 +11,11 @@
             <EventTrigger RoutedEvent="Mouse.MouseEnter">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation 
-                           
+                        <DoubleAnimation
                             Storyboard.TargetProperty="ScaleX"
                             To="2"
                             Duration="0:0:0.1" />
                         <DoubleAnimation
-                            
                             Storyboard.TargetProperty="ScaleY"
                             To="2"
                             Duration="0:0:0.1" />
@@ -28,12 +26,10 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation
-                            
                             Storyboard.TargetProperty="ScaleX"
                             To="1"
                             Duration="0:0:0.1" />
                         <DoubleAnimation
-                           
                             Storyboard.TargetProperty="ScaleY"
                             To="1"
                             Duration="0:0:0.1" />

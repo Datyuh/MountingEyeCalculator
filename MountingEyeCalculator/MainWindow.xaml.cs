@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
 using MahApps.Metro.IconPacks;
+using MountingEyeCalculator.ViewsModel;
 
 namespace MountingEyeCalculator
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : System.Windows.Window
     {
         private bool mRestoreIfMove = false;
 
         public MainWindow()
         {
             InitializeComponent();
-            WithBushing.IsChecked = true;
-            TablUnits.DataContext = new GridUnitsModel();
+            DataContext = new MainWindowViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -52,7 +50,7 @@ namespace MountingEyeCalculator
         void Window_SourceInitialized(object sender, EventArgs e)
         {
             IntPtr mWindowHandle = (new WindowInteropHelper(this)).Handle;
-            HwndSource.FromHwnd(mWindowHandle).AddHook(WindowProc);
+            HwndSource.FromHwnd(mWindowHandle)?.AddHook(WindowProc);
         }
 
 
