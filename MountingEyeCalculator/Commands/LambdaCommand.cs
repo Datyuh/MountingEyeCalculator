@@ -1,7 +1,7 @@
 ﻿using System;
-using StudCalculator.Infrastructure.Commands.Base;
+using MountingEyeCalculator.Commands.Base;
 
-namespace StudCalculator.Infrastructure.Commands
+namespace MountingEyeCalculator.Commands
 {
     internal class LambdaCommand : Command
     {

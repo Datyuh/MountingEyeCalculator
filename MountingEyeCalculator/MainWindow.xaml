@@ -14,7 +14,7 @@
     Background="{x:Null}"
     FontFamily="Calibri"
     FontSize="14"
-    Icon="Resources/Calculation_Eyelets.ico"
+    Icon="/Resources/Calculation_Eyelets.ico"
     ResizeMode="CanResizeWithGrip"
     SourceInitialized="Window_SourceInitialized"
     WindowStartupLocation="CenterScreen"
@@ -426,7 +426,7 @@
                                     x:Name="WeightDevices"
                                     TabIndex="1"
                                     TextBlockUnit="кг."
-                                    TextWeightDevice="{Binding WeightDevices, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding WeightDevices, Mode=TwoWay}"
                                     Watermarks="Macca апп."
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -447,7 +447,7 @@
                                     x:Name="LBigBox"
                                     TabIndex="2"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding LBigBox, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding LBigBox, Mode=TwoWay}"
                                     Watermarks="L"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -468,7 +468,7 @@
                                     x:Name="ABigBox"
                                     TabIndex="3"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding ABigBox, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding ABigBox, Mode=TwoWay}"
                                     Watermarks="A"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -489,7 +489,7 @@
                                     x:Name="BBigBox"
                                     TabIndex="4"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding BBigBox, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding BBigBox, Mode=TwoWay}"
                                     Watermarks="B"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -510,7 +510,7 @@
                                     x:Name="DBox"
                                     TabIndex="4"
                                     TextBlockUnit=""
-                                    TextWeightDevice="{Binding DBox, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding DBox, Mode=TwoWay}"
                                     Watermarks="D"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -531,7 +531,7 @@
                                     x:Name="D1Box"
                                     TabIndex="5"
                                     TextBlockUnit=""
-                                    TextWeightDevice="{Binding D1Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding D1Box, Mode=TwoWay}"
                                     Watermarks="D1"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -552,7 +552,7 @@
                                     x:Name="AlfaBox"
                                     TabIndex="6"
                                     TextBlockUnit="°"
-                                    TextWeightDevice="{Binding AlfaBox, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding AlfaBox, Mode=TwoWay}"
                                     Watermarks="α"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -573,7 +573,7 @@
                                     x:Name="YBox"
                                     TabIndex="7"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding YBox, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding YBox, Mode=TwoWay}"
                                     Watermarks="y"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -594,7 +594,7 @@
                                     x:Name="SigmaTBox"
                                     TabIndex="8"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding SigmaTBox, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding SigmaTBox, Mode=TwoWay}"
                                     Watermarks="σt"
                                     WatermarksTextColors="Gray" />
 
@@ -616,7 +616,7 @@
                                     x:Name="H1Box"
                                     TabIndex="9"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding H1Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding H1Box, Mode=TwoWay}"
                                     Watermarks="h1"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -637,7 +637,7 @@
                                     x:Name="H2Box"
                                     TabIndex="10"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding H2Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding H2Box, Mode=TwoWay}"
                                     Watermarks="h2"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -658,7 +658,7 @@
                                     x:Name="BBox"
                                     TabIndex="11"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding BBox, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding BBox, Mode=TwoWay}"
                                     Watermarks="b"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -679,7 +679,7 @@
                                     x:Name="TBox"
                                     TabIndex="12"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding TBox, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding TBox, Mode=TwoWay}"
                                     Watermarks="t"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -700,7 +700,7 @@
                                     x:Name="T1Box"
                                     TabIndex="13"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding T1Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding T1Box, Mode=TwoWay}"
                                     Watermarks="t1"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -721,7 +721,7 @@
                                     x:Name="T2Box"
                                     TabIndex="14"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding T2Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding T2Box, Mode=TwoWay}"
                                     Watermarks="t2"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -742,7 +742,7 @@
                                     x:Name="T3Box"
                                     TabIndex="15"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding T3Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding T3Box, Mode=TwoWay}"
                                     Watermarks="t3"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -763,7 +763,7 @@
                                     x:Name="L1Box"
                                     TabIndex="16"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding L1Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding L1Box, Mode=TwoWay}"
                                     Watermarks="l1"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -784,7 +784,7 @@
                                     x:Name="L2Box"
                                     TabIndex="17"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding L2Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding L2Box, Mode=TwoWay}"
                                     Watermarks="l2"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -806,7 +806,7 @@
                                     TabIndex="18"
                                     TextBlockUnit="мм."
                                     IsEnabled="{Binding T7BoxEnable}"
-                                    TextWeightDevice="{Binding T7Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding T7Box, Mode=TwoWay}"
                                     Watermarks="t7"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -828,7 +828,7 @@
                                     TabIndex="19"
                                     TextBlockUnit="мм."
                                     IsEnabled="{Binding H7BoxEnable}"
-                                    TextWeightDevice="{Binding H7Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding H7Box, Mode=TwoWay}"
                                     Watermarks="h7"
                                     WatermarksTextColors="Black" />
                             </Grid>
@@ -849,7 +849,7 @@
                                     x:Name="K1Box"
                                     TabIndex="20"
                                     TextBlockUnit="мм."
-                                    TextWeightDevice="{Binding K1Box, Mode=OneWayToSource}"
+                                    TextWeightDevice="{Binding K1Box, Mode=TwoWay}"
                                     Watermarks="k1"
                                     WatermarksTextColors="Gray" />
                             </Grid>
@@ -965,7 +965,7 @@
                                 Height="35"
                                 Margin="3,25,0,0"
                                 VerticalAlignment="Center"
-                                Command="{Binding ClearForm}"
+                                Command="{Binding ClearFormCommand}"
                                 Content="Очистить форму">
                                 <Button.Style>
                                     <Style TargetType="Button">

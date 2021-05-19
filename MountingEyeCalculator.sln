@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MountingEyeCalculator", "MountingEyeCalculator\MountingEyeCalculator.csproj", "{582BC7DE-E162-4D16-9E70-86494EFE2FEF}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupMountingEyeCalculator", "SetupMountingEyeCalculator\SetupMountingEyeCalculator.vdproj", "{51B0EFA9-1121-4D75-B914-B39A78A3F0C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{582BC7DE-E162-4D16-9E70-86494EFE2FEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{582BC7DE-E162-4D16-9E70-86494EFE2FEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{582BC7DE-E162-4D16-9E70-86494EFE2FEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51B0EFA9-1121-4D75-B914-B39A78A3F0C0}.Debug|Any CPU.ActiveCfg = Debug
+		{51B0EFA9-1121-4D75-B914-B39A78A3F0C0}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

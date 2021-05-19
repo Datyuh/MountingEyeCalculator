@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>9</LangVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Calculation_Eyelets.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MahApps.Metro.IconPacks.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.IconPacks.Material.4.8.0\lib\net45\MahApps.Metro.IconPacks.Core.dll</HintPath>

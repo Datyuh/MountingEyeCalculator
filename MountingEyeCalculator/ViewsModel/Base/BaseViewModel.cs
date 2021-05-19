@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace StudCalculator.ViewModel.Base
+namespace MountingEyeCalculator.ViewsModel.Base
 {
     internal abstract class BaseViewModel : INotifyPropertyChanged
     {

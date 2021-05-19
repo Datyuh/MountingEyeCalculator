@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace StudCalculator.Infrastructure.Commands.Base
+namespace MountingEyeCalculator.Commands.Base
 {
     internal abstract class Command : ICommand
     {

@@ -43,7 +43,7 @@ namespace MountingEyeCalculator.Models
         private Dictionary<string, object> ResultCalculation()
         {
 
-            return new Dictionary<string, object>
+            return new()
             {
                 {"{{ Q }}", Math.Round(Q)}, {"{{ D }}", DBoxs}, {"{{ L }}", LBigBoxs}, {"{{ B }}", BBoxs},
                 {"{{ A }}", ABigBoxs}, {"{{ R1 }}", Math.Round(R1)}, {"{{ R2 }}", Math.Round(R2)},
