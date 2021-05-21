@@ -13,6 +13,8 @@ namespace MountingEyeCalculator.Models
         private const double Corner = 180 * Math.PI;
         private const double Gravity = 9.8;
 
+        #region Calculation metods
+
         private double Q => WeightDevicess * Gravity;
         private double R1 => DBoxs * Q * BBigBoxs / LBigBoxs;
         private double R2 => DBoxs * Q * ABigBoxs / LBigBoxs;
@@ -40,9 +42,10 @@ namespace MountingEyeCalculator.Models
         private double teta1 => R2 / (2 * (T7Boxs * H7Boxs) + TBoxs * T3Boxs);
         private double teta2 => R2 / (2 * 0.7 * K1Boxs * (L1Boxs + (H1Boxs + H2Boxs) + L2Boxs));
 
+        #endregion
+
         private Dictionary<string, object> ResultCalculation()
         {
-
             return new()
             {
                 {"{{ Q }}", Math.Round(Q)}, {"{{ D }}", DBoxs}, {"{{ L }}", LBigBoxs}, {"{{ B }}", BBoxs},

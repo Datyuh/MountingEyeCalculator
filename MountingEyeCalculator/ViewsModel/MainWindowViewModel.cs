@@ -1,15 +1,27 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using MountingEyeCalculator.Commands;
 using MountingEyeCalculator.Models;
 using MountingEyeCalculator.ViewsModel.Base;
 using MountingEyeCalculator.Window;
+using static MountingEyeCalculator.Variables;
 
 namespace MountingEyeCalculator.ViewsModel
 {
     class MainWindowViewModel : BaseViewModel
     {
         private readonly CalculationModule _calculationModule = new();
+
+        private List<double?> EmptyFields => new()
+        {
+            WeightDevices, LBigBox, ABigBox, BBigBox, DBox, D1Box,
+            AlfaBox, YBox, SigmaTBox, H1Box, H2Box, BBox,
+            TBox, T1Box, T2Box, T3Box, L1Box, L2Box, K1Box
+        };
+
+        #region Window control
 
         #region Enter data from users
 
@@ -85,6 +97,19 @@ namespace MountingEyeCalculator.ViewsModel
 
         #endregion
 
+        #region Error text color
+
+        private Brush _unitColorsText = Brushes.White;
+        public Brush UnitColorsText { get => _unitColorsText; set => Set(ref _unitColorsText, value); }
+
+        private Brush _watermarksTextColorsG = Brushes.Gray;
+        public Brush WatermarksTextColorsG { get => _watermarksTextColorsG; set => Set(ref _watermarksTextColorsG, value); }
+
+        private Brush _watermarksTextColorsB = Brushes.Black;
+        public Brush WatermarksTextColorsB { get => _watermarksTextColorsB; set => Set(ref _watermarksTextColorsB, value); }
+
+        #endregion
+
         #region Enter result in textblock
 
         private string _enterResult;
@@ -110,6 +135,8 @@ namespace MountingEyeCalculator.ViewsModel
         private bool _withoutBushingChecked;
         public bool WithoutBushingChecked { get => _withoutBushingChecked; set => Set(ref _withoutBushingChecked, value); }
 
+#endregion
+
         #endregion
 
         #region Command
@@ -120,29 +147,28 @@ namespace MountingEyeCalculator.ViewsModel
         private bool CanResultCommandExecute(object p) => true;
         private void OnResultCommandExecuted(object p)
         {
-            Variables.WeightDevicess = (double) WeightDevices;
-            Variables.LBigBoxs = (double) LBigBox;
-            Variables.ABigBoxs = (double) ABigBox;
-            Variables.BBigBoxs = (double) BBigBox;
-            Variables.DBoxs = (double) DBox;
-            Variables.D1Boxs = (double) D1Box;
-            Variables.AlfaBoxs = (double) AlfaBox;
-            Variables.YBoxs = (double) YBox;
-            Variables.SigmaTBoxs = (double) SigmaTBox;
-            Variables.H1Boxs = (double) H1Box;
-            Variables.H2Boxs = (double) H2Box;
-            Variables.BBoxs = (double) BBox;
-            Variables.TBoxs = (double) TBox;
-            Variables.T1Boxs = (double) T1Box;
-            Variables.T2Boxs = (double) T2Box;
-            Variables.T3Boxs = (double) T3Box;
-            Variables.L1Boxs = (double) L1Box;
-            Variables.L2Boxs = (double) L2Box;
-            Variables.K1Boxs = (double) K1Box;
-            WithOrWithoutBushing(WithoutBushingChecked);
 
-            EnterResultColorBack = _calculationModule.ResultColorBrush;
-            EnterResult = _calculationModule.ResultTextCalculation;
+            if (WeightDevices != null) WeightDevicess = (double) WeightDevices;
+            if (LBigBox != null) LBigBoxs = (double) LBigBox;
+            if (ABigBox != null) ABigBoxs = (double) ABigBox;
+            if (BBigBox != null) BBigBoxs = (double) BBigBox;
+            if (DBox != null) DBoxs = (double) DBox;
+            if (D1Box != null) D1Boxs = (double) D1Box;
+            if (AlfaBox != null) AlfaBoxs = (double) AlfaBox;
+            if (YBox != null) YBoxs = (double) YBox;
+            if (SigmaTBox != null) SigmaTBoxs = (double) SigmaTBox;
+            if (H1Box != null) H1Boxs = (double) H1Box;
+            if (H2Box != null) H2Boxs = (double) H2Box;
+            if (BBox != null) BBoxs = (double) BBox;
+            if (TBox != null) TBoxs = (double) TBox;
+            if (T1Box != null) T1Boxs = (double) T1Box;
+            if (T2Box != null) T2Boxs = (double) T2Box;
+            if (T3Box != null) T3Boxs = (double) T3Box;
+            if (L1Box != null) L1Boxs = (double) L1Box;
+            if (L2Box != null) L2Boxs = (double) L2Box;
+            if (K1Box != null) K1Boxs = (double) K1Box;
+            WithOrWithoutBushing(WithoutBushingChecked);
+            EmptyField();
         }
 
         #endregion
@@ -153,6 +179,9 @@ namespace MountingEyeCalculator.ViewsModel
         private bool CanClearFormCommandExecute(object p) => true;
         private void OnClearFormCommandExecuted(object p)
         {
+            UnitColorsText = Brushes.White;
+            WatermarksTextColorsG = Brushes.Gray;
+            WatermarksTextColorsB = Brushes.Black;
             WeightDevices = null;
             LBigBox = null;
             ABigBox = null;
@@ -186,6 +215,9 @@ namespace MountingEyeCalculator.ViewsModel
         private void OnWithBushingCommandExecuted(object p)
         {
             if (WithBushingChecked is not true) return;
+            UnitColorsText = Brushes.White;
+            WatermarksTextColorsG = Brushes.Gray;
+            WatermarksTextColorsB = Brushes.Black;
             T7BoxEnable = true;
             H7BoxEnable = true;
         }
@@ -210,8 +242,15 @@ namespace MountingEyeCalculator.ViewsModel
         private bool CanOutputInWordCommandExecute(object p) => true;
         private void OnOutputInWordCommandExecuted(object p)
         {
-            ToWord toWord = new();
-            toWord.Words(_calculationModule.ResultCalculationInWord);
+            if (EmptyFields.Contains(null))
+                ErrorMessage();
+            
+            else
+            {
+                ToWord toWord = new();
+                toWord.Words(_calculationModule.ResultCalculationInWord);
+            }
+           
         }
 
         #endregion
@@ -243,18 +282,37 @@ namespace MountingEyeCalculator.ViewsModel
                 new LambdaCommand(OnShowWindowAboutProgramExecuted, CanShowWindowAboutProgramExecute);
         }
 
+        private void ErrorMessage()
+        {
+            WatermarksTextColorsG = WatermarksTextColorsB = Brushes.Red;
+            MessageBox.Show("Не все данные заполнены", "Ошибка", MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
+
+        private void EmptyField()
+        {
+            if (EmptyFields.Contains(null))
+                ErrorMessage();
+            
+            else
+            {
+                EnterResultColorBack = _calculationModule.ResultColorBrush;
+                EnterResult = _calculationModule.ResultTextCalculation;
+            }
+        }
+
         private void WithOrWithoutBushing(bool withoutBushingChecked)
         {
             if (withoutBushingChecked is true)
             {
-                Variables.T7Boxs = 0;
-                Variables.H7Boxs = 0;
+                T7Boxs = 0;
+                H7Boxs = 0;
             }
 
             else
             {
-                Variables.T7Boxs = (double)T7Box;
-                Variables.H7Boxs = (double)H7Box;
+                if (T7Box != null) T7Boxs = (double) T7Box;
+                if (H7Box != null) H7Boxs = (double) H7Box;
             }
             
         }

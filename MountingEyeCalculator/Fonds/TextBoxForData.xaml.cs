@@ -14,6 +14,8 @@ namespace MountingEyeCalculator.Fonds
         public static readonly DependencyProperty TextBlockUnitText = DependencyProperty.Register("TextBlockUnit", typeof(string), typeof(TextBoxForData));
         public static readonly DependencyProperty WeightDeviceText = DependencyProperty.Register("TextWeightDevice", typeof(string), typeof(TextBoxForData));
         public static readonly DependencyProperty WatermarksTextColor = DependencyProperty.Register("WatermarksTextColors", typeof(Brush), typeof(TextBoxForData));
+        public static readonly DependencyProperty TextBlockUnitColor = DependencyProperty.Register("TextBlockUnitColors", typeof(Brush), typeof(TextBoxForData));
+
         public string TextWeightDevice
         {
             get => (string)GetValue(WeightDeviceText);
@@ -36,6 +38,12 @@ namespace MountingEyeCalculator.Fonds
         {
             get => (Brush)GetValue(WatermarksTextColor);
             set => SetValue(WatermarksTextColor, value);
+        }
+
+        public Brush TextBlockUnitColors
+        {
+            get => (Brush)GetValue(TextBlockUnitColor);
+            set => SetValue(TextBlockUnitColor, value);
         }
 
         public TextBoxForData()

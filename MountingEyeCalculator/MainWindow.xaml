@@ -381,16 +381,16 @@
                                     x:Name="WithBushing"
                                     Grid.Column="0"
                                     Command="{Binding WithBushingCommand}"
-                                    IsChecked="{Binding WithBushingChecked}"
                                     Content="С втулкой"
-                                    Foreground="White" />
+                                    Foreground="White"
+                                    IsChecked="{Binding WithBushingChecked}" />
                                 <RadioButton
                                     x:Name="WithoutBushing"
                                     Grid.Column="1"
                                     Command="{Binding WithoutBushingCommand}"
-                                    IsChecked="{Binding WithoutBushingChecked}"
                                     Content="Без втулки"
-                                    Foreground="White" />
+                                    Foreground="White"
+                                    IsChecked="{Binding WithoutBushingChecked}" />
                             </Grid>
                         </StackPanel>
 
@@ -426,9 +426,10 @@
                                     x:Name="WeightDevices"
                                     TabIndex="1"
                                     TextBlockUnit="кг."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding WeightDevices, Mode=TwoWay}"
                                     Watermarks="Macca апп."
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
                             </Grid>
                             <Border
                                 Grid.Row="0"
@@ -447,9 +448,10 @@
                                     x:Name="LBigBox"
                                     TabIndex="2"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding LBigBox, Mode=TwoWay}"
                                     Watermarks="L"
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
                             </Grid>
                             <Border
                                 Grid.Row="0"
@@ -468,9 +470,10 @@
                                     x:Name="ABigBox"
                                     TabIndex="3"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding ABigBox, Mode=TwoWay}"
                                     Watermarks="A"
-                                    WatermarksTextColors="Black" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsB}" />
                             </Grid>
                             <Border
                                 Grid.Row="0"
@@ -489,9 +492,10 @@
                                     x:Name="BBigBox"
                                     TabIndex="4"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding BBigBox, Mode=TwoWay}"
                                     Watermarks="B"
-                                    WatermarksTextColors="Black" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsB}" />
                             </Grid>
                             <Border
                                 Grid.Row="0"
@@ -510,9 +514,10 @@
                                     x:Name="DBox"
                                     TabIndex="4"
                                     TextBlockUnit=""
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding DBox, Mode=TwoWay}"
                                     Watermarks="D"
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
                             </Grid>
                             <Border
                                 Grid.Row="1"
@@ -531,9 +536,10 @@
                                     x:Name="D1Box"
                                     TabIndex="5"
                                     TextBlockUnit=""
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding D1Box, Mode=TwoWay}"
                                     Watermarks="D1"
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
                             </Grid>
                             <Border
                                 Grid.Row="1"
@@ -552,9 +558,10 @@
                                     x:Name="AlfaBox"
                                     TabIndex="6"
                                     TextBlockUnit="°"
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding AlfaBox, Mode=TwoWay}"
                                     Watermarks="α"
-                                    WatermarksTextColors="Black" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsB}" />
                             </Grid>
                             <Border
                                 Grid.Row="1"
@@ -573,9 +580,10 @@
                                     x:Name="YBox"
                                     TabIndex="7"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding YBox, Mode=TwoWay}"
                                     Watermarks="y"
-                                    WatermarksTextColors="Black" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsB}" />
                             </Grid>
                             <Border
                                 Grid.Row="1"
@@ -594,9 +602,10 @@
                                     x:Name="SigmaTBox"
                                     TabIndex="8"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding SigmaTBox, Mode=TwoWay}"
                                     Watermarks="σt"
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
 
                             </Grid>
                             <Border
@@ -616,9 +625,10 @@
                                     x:Name="H1Box"
                                     TabIndex="9"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding H1Box, Mode=TwoWay}"
                                     Watermarks="h1"
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
                             </Grid>
                             <Border
                                 Grid.Row="2"
@@ -637,9 +647,10 @@
                                     x:Name="H2Box"
                                     TabIndex="10"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding H2Box, Mode=TwoWay}"
                                     Watermarks="h2"
-                                    WatermarksTextColors="Black" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsB}" />
                             </Grid>
                             <Border
                                 Grid.Row="2"
@@ -658,9 +669,10 @@
                                     x:Name="BBox"
                                     TabIndex="11"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding BBox, Mode=TwoWay}"
                                     Watermarks="b"
-                                    WatermarksTextColors="Black" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsB}" />
                             </Grid>
                             <Border
                                 Grid.Row="2"
@@ -679,9 +691,10 @@
                                     x:Name="TBox"
                                     TabIndex="12"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding TBox, Mode=TwoWay}"
                                     Watermarks="t"
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
                             </Grid>
                             <Border
                                 Grid.Row="3"
@@ -700,9 +713,10 @@
                                     x:Name="T1Box"
                                     TabIndex="13"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding T1Box, Mode=TwoWay}"
                                     Watermarks="t1"
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
                             </Grid>
                             <Border
                                 Grid.Row="3"
@@ -721,9 +735,10 @@
                                     x:Name="T2Box"
                                     TabIndex="14"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding T2Box, Mode=TwoWay}"
                                     Watermarks="t2"
-                                    WatermarksTextColors="Black" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsB}" />
                             </Grid>
                             <Border
                                 Grid.Row="3"
@@ -742,9 +757,10 @@
                                     x:Name="T3Box"
                                     TabIndex="15"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding T3Box, Mode=TwoWay}"
                                     Watermarks="t3"
-                                    WatermarksTextColors="Black" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsB}" />
                             </Grid>
                             <Border
                                 Grid.Row="3"
@@ -763,9 +779,10 @@
                                     x:Name="L1Box"
                                     TabIndex="16"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding L1Box, Mode=TwoWay}"
                                     Watermarks="l1"
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
                             </Grid>
                             <Border
                                 Grid.Row="4"
@@ -784,9 +801,10 @@
                                     x:Name="L2Box"
                                     TabIndex="17"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding L2Box, Mode=TwoWay}"
                                     Watermarks="l2"
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
                             </Grid>
                             <Border
                                 Grid.Row="4"
@@ -803,12 +821,13 @@
                                 Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="T7Box"
+                                    IsEnabled="{Binding T7BoxEnable}"
                                     TabIndex="18"
                                     TextBlockUnit="мм."
-                                    IsEnabled="{Binding T7BoxEnable}"
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding T7Box, Mode=TwoWay}"
                                     Watermarks="t7"
-                                    WatermarksTextColors="Black" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsB}" />
                             </Grid>
                             <Border
                                 Grid.Row="4"
@@ -822,15 +841,16 @@
                             <Grid
                                 Grid.Row="4"
                                 Grid.Column="3"
-                                Margin="0,0,0,0"> 
+                                Margin="0,0,0,0">
                                 <fonds:TextBoxForData
                                     x:Name="H7Box"
+                                    IsEnabled="{Binding H7BoxEnable}"
                                     TabIndex="19"
                                     TextBlockUnit="мм."
-                                    IsEnabled="{Binding H7BoxEnable}"
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding H7Box, Mode=TwoWay}"
                                     Watermarks="h7"
-                                    WatermarksTextColors="Black" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsB}" />
                             </Grid>
                             <Border
                                 Grid.Row="4"
@@ -849,9 +869,10 @@
                                     x:Name="K1Box"
                                     TabIndex="20"
                                     TextBlockUnit="мм."
+                                    TextBlockUnitColors="{Binding UnitColorsText}"
                                     TextWeightDevice="{Binding K1Box, Mode=TwoWay}"
                                     Watermarks="k1"
-                                    WatermarksTextColors="Gray" />
+                                    WatermarksTextColors="{Binding WatermarksTextColorsG}" />
                             </Grid>
                             <Border
                                 Grid.Row="5"
